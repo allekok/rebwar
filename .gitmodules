@@ -1,0 +1,3 @@
+[submodule "words/ckb/wordlist"]
+	path = words/ckb/wordlist
+	url = https://github.com/DevelopersTree/KurdishResources.git
