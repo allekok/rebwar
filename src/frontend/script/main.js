@@ -1,53 +1,59 @@
 /* Constants */
+
+// Wordlists
 const wordlists = {
     ckb: 'کوردی (ئەلفووبێی عەرەبی)',
 };
 const wordlists_selected_storage_name = 'wordlists_selected';
-const wordlists_selected_storage = isJSON(
-    localStorage.getItem(wordlists_selected_storage_name));
-const wordlists_selected = wordlists_selected_storage ||
-      [ 'ckb' ];
+const wordlists_selected_storage =
+      isJSON(localStorage.getItem(wordlists_selected_storage_name));
+const wordlists_selected =
+      wordlists_selected_storage || [ 'ckb' ];
+
+// Elements
 const wordlists_el_id = 'wordlists';
 const q_el_id = 'q';
 const result_el_id = 'result';
 const form_el_id = 'frm';
 
+/* Events */
+window.addEventListener('load', function () {
+    // Wordlists
+    wordlists_print();
+
+    // Form
+    const form_el = document.getElementById(form_el_id);
+    form_el.addEventListener('submit', function(e) {
+	e.preventDefault();
+	lookup();
+    });
+
+    // Header
+    const header_h1_el = document.querySelector('header h1');
+    header_h1_el.addEventListener('click', function() {
+	clear_screen();
+    });
+});
+
 /* Functions */
-function getUrl (url, callback)
-{
-    const client = new XMLHttpRequest();
-    client.open('get', url);
-    client.onload = function ()
-    {
-	callback(this.responseText);
-    }
-    client.send();
-}
 
-function postUrl (url, request, callback)
-{
-    const client = new XMLHttpRequest();
-    client.open('post', url);
-    client.onload = function ()
-    {
-	callback(this.responseText);
-    }
-    client.setRequestHeader(
-	"Content-type","application/x-www-form-urlencoded");
-    client.send(request);
-}
-
+// Lookup
 function lookup ()
 {
+    // Input
     const q_el = document.getElementById(q_el_id);
+    const q = encodeURIComponent(q_el.innerText.trim());
     const wordlists = get_selected_wordlists();
     const wordlists_req = wordlists.join(',');
-    const result_el = document.getElementById(result_el_id);
-    const q = encodeURIComponent(q_el.innerText.trim());
+
+    // Target
     const url = 'src/backend/spellcheck.php';
     const request = `q=${q}&wordlists=${wordlists_req}&output=json`;
-    const loading = '<div class="loading"></div>';
 
+    // Output
+    const loading = '<div class="loading"></div>';
+    const result_el = document.getElementById(result_el_id);
+    
     if(!q)
     {
 	q_el.focus();
@@ -65,7 +71,7 @@ function lookup ()
     // Save selected wordlists
     save_selected_wordlists(wordlists);
     
-    postUrl(url, request, function(response) {
+    post(url, request, function(response) {
 	response = isJSON(response);
 	
 	let toprint = '<p>گەڕان ' + response.time
@@ -95,29 +101,20 @@ function lookup ()
     });
 }
 
-function isJSON (string)
-{
-    try
-    {
-	return JSON.parse(string);
-    }
-    catch (e)
-    {
-	console.log(e);
-	return false;
-    }
-}
-
+// Wordlists
 function get_selected_wordlists ()
 {
     let selected = [];
     
     const wordlists_el = document.getElementById(wordlists_el_id);
-    const wordlists_checks = wordlists_el.querySelectorAll('input[type=checkbox]');
+    const wordlists_checks = wordlists_el.
+	  querySelectorAll('input[type=checkbox]');
     wordlists_checks.forEach(function (o) {
-	const d = o.id;
-	if(o.checked && wordlist_valid(d))
-	    selected.push(d);
+	if(o.checked)
+	{
+	    const d = o.id;
+	    if(wordlist_valid(d)) selected.push(d);
+	}
     });
     
     return selected;
@@ -138,7 +135,7 @@ function wordlist_to_kurdish (wordlist)
     }
     catch (e)
     {
-	console.log(e);
+	console.warn(e);
 	return false;
     }
 }
@@ -146,13 +143,16 @@ function wordlist_to_kurdish (wordlist)
 function wordlists_print ()
 {
     let wordlists_html = '';
+    
     for (const i in wordlists)
     {
 	wordlists_html += `<div><input type="checkbox" id="${i}" 
 ${wordlists_selected.indexOf(i) !== -1 ? 'checked' : ''}
 ><label for="${i}">${wordlists[i]}</label></div>`;
     }
-    document.getElementById(wordlists_el_id).innerHTML = wordlists_html;
+    
+    document.getElementById(wordlists_el_id).innerHTML =
+	wordlists_html;
 }
 
 function wordlist_valid (wordlist)
@@ -163,6 +163,7 @@ function wordlist_valid (wordlist)
     return false;
 }
 
+// Other
 function clear_screen ()
 {
     const result_el = document.getElementById(result_el_id);
@@ -174,21 +175,29 @@ function clear_screen ()
     q_el.focus();
 }
 
-/* Events */
-window.addEventListener('load', function () {
-    // Wordlists
-    wordlists_print();
+// Tools
+function post (url, request, callback)
+{
+    const client = new XMLHttpRequest();
+    client.open('post', url);
+    client.onload = function ()
+    {
+	callback(this.responseText);
+    }
+    client.setRequestHeader(
+	"Content-type","application/x-www-form-urlencoded");
+    client.send(request);
+}
 
-    // Form
-    const form_el = document.getElementById(form_el_id);
-    form_el.addEventListener('submit', function(e) {
-	e.preventDefault();
-	lookup();
-    });
-
-    // Header
-    const header_h1_el = document.querySelector('header h1');
-    header_h1_el.addEventListener('click', function() {
-	clear_screen();
-    });
-});
+function isJSON (string)
+{
+    try
+    {
+	return JSON.parse(string);
+    }
+    catch (e)
+    {
+	console.warn(e);
+	return false;
+    }
+}
