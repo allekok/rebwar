@@ -1,19 +1,14 @@
 <?php
 require('../library.php');
-
-const _input = 'wordlist/Kurdish wordlist/Wordlist allekok+barham-a+wikipedia.txt';
+const _input = 'ckb.txt';
 const _output = 'ckb.txt';
 
-$words = [];
+$words = explode("\n", file_get_contents(_input));
+$new_words = [];
 
-$f = fopen(_input, 'r');
-while(! feof($f))
-{
-    $line = fgets($f);
-    if($word = is_word_valid($line))
-	$words[] = $word;
-}
+sort($words);
 
-$words = implode("\n", $words);
-file_put_contents(_output, $words);
+$string = implode("\n", $words);
+
+file_put_contents(_output, $string);
 ?>

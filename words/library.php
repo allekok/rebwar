@@ -18,7 +18,6 @@ const _kurdish_vowels = [
     'ە',
     'ۆ',
     'ا',
-    '‌',
 ];
 
 function is_word_valid ($word)
@@ -53,21 +52,25 @@ function is_word_valid ($word)
 	
 	$i++;
     }
+
+    if(is_number($word))
+	return false;
     
     return $word;
 }
 
-function sanitize_string ($string)
+function sanitize_string ($string, $to='')
 {
     // Remove Punctuation Marks
     $to_remove = [
-	'!','@','#','$','%','^','&','*','(',')',
+	'0','!','@','#','$','%','^','&','*','(',')',
 	'-','=','_','+','\\','|','[',']','{','}',
-	'"',"'",';',':','/','?','.',',','<','>','‌'
+	'"',"'",';',':','/','?','.',',','<','>','‌',
+	'،','؟','؛',
     ];
 
     $string = str_replace(['ه‌'], ['ە'], $string);
-    $string = str_replace($to_remove, '', $string);
+    $string = str_replace($to_remove, $to, $string);
     $string = trim($string);
 
     return $string;
@@ -88,5 +91,18 @@ function wordlist_list ()
     }
     closedir($d);
     return $list;
+}
+
+function is_number ($string)
+{
+    $nums = ['١','٢','٣','٤','٥','٦','٧','٨','٩','٠'];
+    $i = 0;
+    while($c = mb_substr($string, $i, 1))
+    {
+	if(! in_array($c, $nums))
+	    return NULL;
+	$i++;
+    }
+    return true;
 }
 ?>
