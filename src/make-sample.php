@@ -5,6 +5,10 @@ const _files = [
 	'out'=>'../index.html',
 	'in'=>'frontend/index.html',
     ],
+    [
+	'out'=>'../dev.html',
+	'in'=>'frontend/dev.html',
+    ],
 ];
 
 const _script = true;
