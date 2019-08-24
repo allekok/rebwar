@@ -1,3 +1,6 @@
 [submodule "words/ckb/wordlist"]
 	path = words/ckb/wordlist
 	url = https://github.com/DevelopersTree/KurdishResources.git
+[submodule "words/ckb/allekok-poems"]
+	path = words/ckb/allekok-poems
+	url = https://github.com/allekok/allekok-poems
