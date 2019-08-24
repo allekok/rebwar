@@ -1,6 +1,6 @@
 /* Constants */
 const wordlists = {
-    ckb: 'کوردیی ناوەندی',
+    ckb: 'کوردی (ئەلفووبێی عەرەبی)',
 };
 const wordlists_selected_storage_name = 'wordlists_selected';
 const wordlists_selected_storage = isJSON(
