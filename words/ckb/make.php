@@ -2,14 +2,13 @@
 require('../library.php');
 
 const _output = 'ckb.txt';
-$_inputs = [
+$_texts = [
     'wordlist/Kurdish wordlist/Wordlist allekok+barham-a+wikipedia.txt',
     'wordlist/Kurdish wordlist/bot-ckb.wikipedia.org.txt',
     'wordlist/Kurdish wordlist/KurdishWordList-Barham-A.-Ahmad.txt',
     'wordlist/WP strings/wp-dev-admin-ckb.txt',
     'wordlist/WP strings/wp-dev-admin-network-ckb.txt',
     'wordlist/WP strings/wp-dev-ckb.txt',
-    'allekok-poems.txt',
 ];
 $_zips = [
     'chawg' => 'wordlist/Corpus/chawg.zip',
@@ -18,45 +17,49 @@ $_zips = [
     'speemedia' => 'wordlist/Corpus/speemedia.zip',
     'wishe' => 'wordlist/Corpus/wishe.zip',
 ];
+$dicts_name = ['henbane-borine', 'xal'];
+$dicts = [];
+dicts($dicts_name);
 $words = [];
 
 // allekok-poems
-$allekok_poems = '';
-make_allekok_poems();
-file_put_contents('allekok-poems.txt', $allekok_poems);
+process_dir('./allekok-poems/شێعرەکان');
 
-foreach($_inputs as $input)
+// texts
+foreach($_texts as $o)
 {
-    process_file($input);
+    process_file($o);
 }
 
+// zips
 foreach($_zips as $zip => $path)
 {
     exec("unzip '$path'");
-    $files = scandir($zip);
-    $files = array_diff($files, ['.','..']);
-
+    $files = array_diff(scandir($zip),['.','..']);
     foreach($files as $f)
     {
 	process_file("$zip/$f");
     }
-
     exec("rm -r '$zip'");
 }
 
-exec("rm 'allekok-poems.txt'");
-
-// Save
+// save
 $string = '';
-foreach($words as $w => $_)
+$string_not_sure = '';
+foreach($words as $w => $n)
 {
-    $string .= "$w\n";
+    if($n > 1 or lookup($w))
+	$string .= "$w\n";
+    else
+	$string_not_sure .= "$w\n";
 }
 $string = trim($string);
+$string_not_sure = trim($string_not_sure);
 
 file_put_contents(_output, $string);
+file_put_contents(_output . '-not-sure', $string_not_sure);
 
-// Process
+// process
 function process_file ($input)
 {
     global $words;
@@ -71,7 +74,9 @@ function process_file ($input)
 	foreach($line as $w)
 	{
 	    if($word = is_word_valid($w))
-		$words[$word] = true;
+	    {
+		@$words[$word]++;
+	    }
 	}
     }
     fclose($f);
@@ -79,22 +84,51 @@ function process_file ($input)
     echo "`$input' Done.\n";
 }
 
-function make_allekok_poems ($path='./allekok-poems/شێعرەکان')
+function process_dir ($path)
 {
-    global $allekok_poems;
+    $not = ['.','..','.git'];
     $d = opendir($path);
     while(false !== ($o = readdir($d)))
     {
-	if(in_array($o, ['.','..']))
+	if(in_array($o, $not))
 	    continue;
 	
 	if(is_dir("$path/$o"))
-	    make_allekok_poems("$path/$o");
+	    process_dir("$path/$o");
 	else
-	{
-	    $allekok_poems .= file_get_contents("$path/$o");
-	}
+	    process_file("$path/$o");
     }
     closedir($d);
+}
+
+function dicts($dicts_name)
+{
+    global $dicts;
+    foreach($dicts_name as $dict_name)
+    {
+	$dict_path = "../../../tewar-2/dict/$dict_name/$dict_name.txt";
+	$f = fopen($dict_path, 'r');
+	while(! feof($f))
+	{
+	    $line = explode("\t", trim(fgets($f)));
+	    if(@$line[1])
+	    {
+		$dicts[$dict_name][$line[0]] = true;
+	    }
+	}
+	fclose($f);
+    }
+}
+
+function lookup ($w)
+{
+    global $dicts;
+    
+    foreach($dicts as $dict)
+    {
+	if(@$dict[$w]) return true;
+    }
+    
+    return false;
 }
 ?>
