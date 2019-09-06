@@ -45,14 +45,14 @@ function is_word_valid ($word)
 		return false;
 	    }
 	}
-
+	
 	// Non-Unicode
 	if(! in_array($c, _kurdish_letters))
 	    return false;
 	
 	$i++;
     }
-
+    
     if(is_number($word))
 	return false;
     
