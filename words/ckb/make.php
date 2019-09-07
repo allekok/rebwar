@@ -25,6 +25,9 @@ $words = [];
 // allekok-poems
 process_dir('./allekok-poems/شێعرەکان');
 
+//allekok-downloads
+process_dir('./allekok-downloads/downloads/allekok.com/text');
+
 // texts
 foreach($_texts as $o)
 {

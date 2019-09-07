@@ -4,3 +4,6 @@
 [submodule "words/ckb/allekok-poems"]
 	path = words/ckb/allekok-poems
 	url = https://github.com/allekok/allekok-poems
+[submodule "words/ckb/allekok-downloads"]
+	path = words/ckb/allekok-downloads
+	url = https://github.com/allekok/allekok-downloads
