@@ -9,6 +9,7 @@ $_texts = [
     'wordlist/WP strings/wp-dev-admin-ckb.txt',
     'wordlist/WP strings/wp-dev-admin-network-ckb.txt',
     'wordlist/WP strings/wp-dev-ckb.txt',
+    'allekok-list.txt',
 ];
 $_zips = [
     'chawg' => 'wordlist/Corpus/chawg.zip',
@@ -17,7 +18,7 @@ $_zips = [
     'speemedia' => 'wordlist/Corpus/speemedia.zip',
     'wishe' => 'wordlist/Corpus/wishe.zip',
 ];
-$dicts_name = ['henbane-borine', 'xal'];
+$dicts_name = ['henbane-borine', 'xal', 'bashur'];
 $dicts = [];
 dicts($dicts_name);
 $words = [];
