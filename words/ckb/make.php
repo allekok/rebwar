@@ -23,6 +23,9 @@ $dicts = [];
 dicts($dicts_name);
 $words = [];
 
+// tewar
+process_dir('./tewar/dict');
+
 // allekok-poems
 process_dir('./allekok-poems/شێعرەکان');
 
@@ -55,7 +58,7 @@ $string = '';
 $string_not_sure = '';
 foreach($words as $w => $n)
 {
-    if($n > 1 or lookup($w))
+    if($n > 2 or lookup($w))
 	$string .= "$w\n";
     else
 	$string_not_sure .= "$w\n";

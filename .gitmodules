@@ -10,3 +10,6 @@
 [submodule "words/ckb/layik-kurdi"]
 	path = words/ckb/layik-kurdi
 	url = https://github.com/layik/kurdi.git
+[submodule "words/ckb/tewar"]
+	path = words/ckb/tewar
+	url = https://github.com/allekok/tewar-2.git
