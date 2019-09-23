@@ -68,7 +68,7 @@ function sanitize_string ($string, $to='')
 	'"',"'",';',':','/','?','.',',','<','>','‌',
 	'،','؟','؛',
     ];
-
+    
     $string = str_replace(['ه‌'], ['ە'], $string);
     $string = str_replace($to_remove, $to, $string);
     $string = trim($string);

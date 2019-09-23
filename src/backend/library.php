@@ -72,7 +72,7 @@ function spellcheck ($q, $wordlists_name)
 function sanitize_string ($string)
 {
     $to_remove = ['‌'];
-    $string = str_replace($to_remove, '', $string);
+    $string = str_replace($to_remove, ' ', $string);
     return $string;
 }
 
