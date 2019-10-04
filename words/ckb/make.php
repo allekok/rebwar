@@ -23,6 +23,12 @@ $dicts = [];
 dicts($dicts_name);
 $words = [];
 
+// asosoft
+exec('cat asosoft/AsoSoft\ Text\ Corpus\ Large\ Version/*.z* > asosoft.zip');
+exec('unzip asosoft.zip');
+process_file('AsoSoft Text Corpus- Version 1.0 (2018-12-10).txt');
+exec('rm asosoft.zip "AsoSoft Text Corpus- Version 1.0 (2018-12-10).txt"');
+
 // tewar
 process_dir('./tewar/dict');
 
@@ -72,6 +78,7 @@ file_put_contents(_output . '-not-sure', $string_not_sure);
 // process
 function process_file ($input)
 {
+    echo "Processing `$input'...\n";
     global $words;
     $f = fopen($input, 'r');
     while(! feof($f))
@@ -90,8 +97,6 @@ function process_file ($input)
 	}
     }
     fclose($f);
-
-    echo "`$input' Done.\n";
 }
 
 function process_dir ($path)

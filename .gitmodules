@@ -13,3 +13,6 @@
 [submodule "words/ckb/tewar"]
 	path = words/ckb/tewar
 	url = https://github.com/allekok/tewar-2.git
+[submodule "words/ckb/asosoft"]
+	path = words/ckb/asosoft
+	url = https://github.com/AsoSoft/AsoSoft-Text-Corpus
