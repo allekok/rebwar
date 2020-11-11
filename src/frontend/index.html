@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ckb">
-    <head>
-	<title>ڕێبوار</title>
-	<meta charset="utf-8" >
-	<meta name="viewport" content="width=device-width, initial-scale=1" >
-	{SERVICE_WORKER}
-	{STYLE}
-    </head>
-    <body>
-	<header>
-	    <h1>ڕێبوار <small>ڕێنووسی دروستی وشە </small></h1>
-	</header>
-	<main id="main">
-	    <form method="post" action="src/backend/spellcheck.php" id="frm">
-		<h2>دەق:</h2>
-		<div name="q" id="q" contenteditable></div>
-		<div id="wordlists"></div>
-		<button type="submit">پێداچوونەوە</button>
-	    </form>
-	    <div id="result"></div>
-	</main>
-	<footer>
-	    <a href="dev.html" title="کۆدەکانی ڕێبوار">
-		کۆد
-	    </a>
-	    -
-	    <a href="https://allekok.ir/" title="شێعری شاعیرانی کورد">
-		ئاڵەکۆک
-	    </a>
-	</footer>
-	{SCRIPT}
-    </body>
+	<head>
+		<title>ڕێبوار</title>
+		<meta charset="utf-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1" >
+		{SERVICE_WORKER}
+		{STYLE}
+	</head>
+	<body>
+		<header>
+			<h1>ڕێبوار <small>ڕێنووسی دروستی وشە </small></h1>
+		</header>
+		<main id="main">
+			<form method="post" action="src/backend/spellcheck.php" id="frm">
+				<h2>دەق:</h2>
+				<div name="q" id="q" contenteditable></div>
+				<div id="wordlists"></div>
+				<button type="submit">پێداچوونەوە</button>
+			</form>
+			<div id="result"></div>
+		</main>
+		<footer>
+			<a href="https://allekok.github.io/donate/">
+				یارمەتیی ماڵی
+			</a>
+			-
+			<a href="dev.html" title="کۆدەکانی ڕێبوار">
+				کۆد
+			</a>
+			-
+			<a href="https://allekok.github.io/">
+				بەرنامەکانی ئاڵەکۆک
+			</a>
+		</footer>
+		{SCRIPT}
+	</body>
 </html>
