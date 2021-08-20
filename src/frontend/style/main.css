@@ -1,131 +1,109 @@
 {FONT_DECL}
-*
-{
-    box-sizing:border-box;
-    font-family:{FONT}, Arial;
-    font-size:inherit;
+* {
+	box-sizing:border-box;
+	font-family:{FONT}, Arial;
+	font-size:inherit;
 }
-body
-{
-    margin:1em;
+body {
+	margin:1em;
 }
-a
-{
-    color:#00e;
+a {
+	color:#00e;
 }
-#main
-{
-    max-width:800px;
-    margin:auto;
+#main {
+	max-width:800px;
+	margin:auto;
 }
-button
-{
-    appearance:none;
-    -webkit-appearance:none;
-    transition:all .2s ease;
-    -webkit-transition:all .2s ease;
+button {
+	appearance:none;
+	-webkit-appearance:none;
+	transition:all .2s ease;
+	-webkit-transition:all .2s ease;
 }
-#q
-{
-    width:100%;
-    display:block;
-    padding:1em;
-    outline:0;
-    border:0;
-    border:2px solid;
-    border-radius:1em;
-    height:20em;
-    overflow-y:auto;
-    line-height:2.2;
+#q {
+	width:100%;
+	display:block;
+	padding:1em;
+	outline:0;
+	border:0;
+	border:2px solid;
+	border-radius:1em;
+	height:20em;
+	overflow-y:auto;
+	line-height:2.2;
 }
-#q:focus
-{
-    border-color:#00e;
+#q:focus {
+	border-color:#00e;
 }
-button
-{
-    display:block;
-    outline:0;
-    border:0;
-    border-radius:1em;
-    margin:1em auto;
-    padding:1em 2em;
-    background:none;
-    border:2px solid;
+button {
+	display:block;
+	outline:0;
+	border:0;
+	border-radius:1em;
+	margin:1em auto;
+	padding:1em 2em;
+	background:none;
+	border:2px solid;
 }
-button:hover
-{
-    border-color:#00e;
+button:hover {
+	border-color:#00e;
 }
-@keyframes loading
-{
-    0% {width:3em}
-    25% {width:5em}
-    65% {width:2em}
-    80% {width:5em}
-    100% {width:3em}
+@keyframes loading {
+	0% {width:3em}
+	25% {width:5em}
+	65% {width:2em}
+	80% {width:5em}
+	100% {width:3em}
 }
-.loading
-{
-    height:2px;
-    animation:loading 1s ease infinite;
-    display:block;
-    margin:1em auto;
-    background:#00e;
+.loading {
+	height:2px;
+	animation:loading 1s ease infinite;
+	display:block;
+	margin:1em auto;
+	background:#00e;
 }
-#dicts div, #frm p
-{
-    font-size:.85em;
+#dicts div, #frm p {
+	font-size:.85em;
 }
-#dicts input[type=checkbox]
-{
-    margin:0;
+#dicts input[type=checkbox] {
+	margin:0;
 }
-#dicts label
-{
-    padding-right:.5em;
+#dicts label {
+	padding-right:.5em;
 }
-#dicts
-{
-    padding:1em 0 0;
+#dicts {
+	padding:1em 0 0;
 }
-header h1
-{
-    cursor:pointer;
-    display:inline-block;
-    margin:.3em 0;
+header h1 {
+	cursor:pointer;
+	display:inline-block;
+	margin:.3em 0;
 }
-header
-{
-    font-size:2em;
-    max-width:1000px;
-    margin:auto;
+header {
+	font-size:2em;
+	max-width:1000px;
+	margin:auto;
 }
-header small
-{
-    font-size:.5em;
+header small {
+	font-size:.5em;
 }
-code
-{
-    display:block;
-    direction:ltr;
-    font-family:{FONT}, Monospace;
-    border-left:2px solid;
-    padding:.5em 0 .5em 1em;
+code {
+	display:block;
+	direction:ltr;
+	font-family:{FONT}, Monospace;
+	border-left:2px solid;
+	padding:.5em 0 .5em 1em;
 }
-footer
-{
-    padding:1em;
-    text-align:left;
-    max-width:1000px;
-    margin:auto;
-    font-size:.9em;
+footer {
+	padding:1em;
+	text-align:left;
+	max-width:1000px;
+	margin:auto;
+	font-size:.9em;
 }
-.wrong
-{
-    border-bottom:2px solid red;
+.wrong {
+	border-bottom:2px solid red;
 }
-.ok
-{
-    color:green;
+.ok {
+	color:green;
 }

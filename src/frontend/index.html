@@ -2,8 +2,8 @@
 <html dir="rtl" lang="ckb">
 	<head>
 		<title>ڕێبوار</title>
-		<meta charset="utf-8" >
-		<meta name="viewport" content="width=device-width, initial-scale=1" >
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
 		{SERVICE_WORKER}
 		{STYLE}
 	</head>
@@ -12,9 +12,12 @@
 			<h1>ڕێبوار <small>ڕێنووسی دروستی وشە </small></h1>
 		</header>
 		<main id="main">
-			<form method="post" action="src/backend/spellcheck.php" id="frm">
+			<form method="post"
+			      action="src/backend/spellcheck.php"
+			      id="frm">
 				<h2>دەق:</h2>
-				<div name="q" id="q" contenteditable></div>
+				<div name="q" id="q"
+				     contenteditable></div>
 				<div id="wordlists"></div>
 				<button type="submit">پێداچوونەوە</button>
 			</form>
