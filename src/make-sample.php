@@ -67,7 +67,7 @@ if(_service_worker) {
 		if('serviceWorker' in navigator)
 			navigator.serviceWorker.register(" .
 	      "'" . _service_worker_path . "', " .
-	      "{scope: '" . _service_worker_scope . "'});
+	      "{scope: '" . _service_worker_scope . "'})
 	</script>";
 }
 
