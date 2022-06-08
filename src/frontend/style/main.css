@@ -17,6 +17,7 @@ a {
 button {
 	appearance:none;
 	-webkit-appearance:none;
+	color:inherit;
 	transition:all .2s ease;
 	-webkit-transition:all .2s ease;
 }
@@ -106,4 +107,29 @@ footer {
 }
 .ok {
 	color:green;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background:#000;
+		color:#fff;
+	}
+	a {
+		color:#0e0;
+	}
+	#q:focus {
+		border-color:#0e0;
+	}
+	button:hover {
+		border-color:#0e0;
+	}
+	.loading {
+		background:#0e0;
+	}
+	.wrong {
+		border-bottom-color:#ff0;
+	}
+	.ok {
+		color:#0e0;
+	}
 }
